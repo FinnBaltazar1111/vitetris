@@ -45,6 +45,7 @@ jobs:
           name: vitetris-binary
 
       - name: Create GitHub Release
+        id: create_release # Add an ID for this step
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,7 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: vitetris.tar.gz
           asset_name: vitetris.tar.gz
           asset_content_type: application/gzip
